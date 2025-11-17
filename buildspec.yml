@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+
+  install:
+     commands:
+       - dotnet --version
+
+  pre_build:
+    commands:
+     -  echo "Prebuild is started..."
+     -  dotnet restore
+  
+  build:
+    commands:
+      - echo "Building project..."
+      - dotnet build --configuration release
+
+  post_build:
+    commands:
+      - echo "Post Build started .."
+      - dotnet publish --configuration release -o ./publish
+
+artifacts:
+  base-directory: publish
+  files:
+    -  '**/*'
+  
+
+  
